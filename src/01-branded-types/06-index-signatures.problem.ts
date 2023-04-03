@@ -22,7 +22,13 @@ interface Post {
  * You'll need an index signature of some kind - or maybe
  * two!
  */
-const db: Record<string, User | Post> = {};
+
+interface Database {
+  [id: PostId]: Post;
+  [id: UserId]: User;
+}
+
+const db: Database = {};
 
 it("Should let you add users and posts to the db by their id", () => {
   const postId = "post_1" as PostId;
