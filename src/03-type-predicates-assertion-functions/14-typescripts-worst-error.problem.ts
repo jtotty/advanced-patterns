@@ -15,9 +15,7 @@ interface NormalUser extends User {
   role: "normal";
 }
 
-const assertUserIsAdmin = (
-  user: NormalUser | AdminUser,
-): asserts user is AdminUser => {
+function assertUserIsAdmin(user: NormalUser | AdminUser): asserts user is AdminUser {
   if (user.role !== "admin") {
     throw new Error("Not an admin user");
   }
@@ -35,13 +33,6 @@ it("Should throw an error when it encounters a normal user", () => {
 
 it("Should assert that the type is an admin user after it has been validated", () => {
   const example = (user: NormalUser | AdminUser) => {
-    /**
-     * Why is this error happening?
-     *
-     * Note: PLEASE DON'T SPEND TOO LONG HERE - feel
-     * free to use the solution. I have personally wasted
-     * hours on this error.
-     */
     assertUserIsAdmin(user);
 
     type tests = [Expect<Equal<typeof user, AdminUser>>];
