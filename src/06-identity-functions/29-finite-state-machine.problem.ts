@@ -1,5 +1,7 @@
 // import { F } from "ts-toolbelt";
 
+import { NoInfer } from "ts-toolbelt/out/Function/NoInfer";
+
 /**
  * Clue: F.NoInfer is part of the solution!
  *
@@ -7,7 +9,7 @@
  * to get it to work.
  */
 interface FSMConfig<TState extends string> {
-  initial: TState;
+  initial: NoInfer<TState>;
   states: Record<
     TState,
     {

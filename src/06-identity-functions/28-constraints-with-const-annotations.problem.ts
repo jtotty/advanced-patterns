@@ -1,7 +1,12 @@
 import { it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const narrowFruits = <TFruits>(t: TFruits) => t;
+type ReadOnlyFruits = readonly {
+  name: string;
+  price: number;
+}[];
+
+export const narrowFruits = <const TFruits extends ReadOnlyFruits>(t: TFruits) => t;
 
 const fruits = narrowFruits([
   {
